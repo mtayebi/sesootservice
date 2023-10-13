@@ -38,3 +38,4 @@ build/
 mvnw.cmd
 mvnw
 src/test
+src/main/resources
