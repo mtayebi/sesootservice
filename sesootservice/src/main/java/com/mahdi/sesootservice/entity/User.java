@@ -4,14 +4,17 @@ import com.mahdi.sesootservice.entity.base.BaseEntity;
 import com.mahdi.sesootservice.entity.base.Person;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 
 @Entity
 @Table(name = "users")
@@ -19,7 +22,6 @@ import java.util.List;
 public class User extends BaseEntity<Long> {
 
     @OneToOne(cascade = CascadeType.ALL)
-    @Column(nullable = false)
     private Person person;
 
     private String credit;

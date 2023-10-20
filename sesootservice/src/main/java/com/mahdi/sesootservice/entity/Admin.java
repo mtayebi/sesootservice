@@ -16,6 +16,5 @@ import lombok.NoArgsConstructor;
 @Table(name = "admins")
 public class Admin extends BaseEntity<Long> {
     @OneToOne(cascade = CascadeType.ALL)
-    @Column(nullable = false)
     private Person person;
 }

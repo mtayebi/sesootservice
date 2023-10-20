@@ -28,7 +28,6 @@ public class Expert extends BaseEntity<Long> {
     private List<ExpertOffer> expertOfferList;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @Column(nullable = false)
     private Person person;
 
 }
