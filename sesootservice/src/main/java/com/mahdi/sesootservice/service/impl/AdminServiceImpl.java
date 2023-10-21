@@ -1,6 +1,12 @@
 package com.mahdi.sesootservice.service.impl;
 
 import com.mahdi.sesootservice.core.exception.*;
+import com.mahdi.sesootservice.core.exception.category.InvalidCategoryNameException;
+import com.mahdi.sesootservice.core.exception.category.InvalidSubCategoryNameException;
+import com.mahdi.sesootservice.core.exception.category.InvalidSubCategoyPriceException;
+import com.mahdi.sesootservice.core.exception.user.InvalidEmailException;
+import com.mahdi.sesootservice.core.exception.user.InvalidPasswordException;
+import com.mahdi.sesootservice.core.exception.user.NoSuchUserException;
 import com.mahdi.sesootservice.entity.Category;
 import com.mahdi.sesootservice.entity.Expert;
 import com.mahdi.sesootservice.entity.SubCategory;

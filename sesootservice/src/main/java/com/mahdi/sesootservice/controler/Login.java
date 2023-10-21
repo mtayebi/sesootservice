@@ -1,6 +1,6 @@
 package com.mahdi.sesootservice.controler;
 
-import com.mahdi.sesootservice.core.exception.NoSuchUserException;
+import com.mahdi.sesootservice.core.exception.user.NoSuchUserException;
 import com.mahdi.sesootservice.core.service.auth.impl.AuthServiceImpl;
 import com.mahdi.sesootservice.entity.DTO.UserLoginDto;
 import com.mahdi.sesootservice.entity.base.Person;

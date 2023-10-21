@@ -1,7 +1,7 @@
 package com.mahdi.sesootservice.service.impl;
 
 import com.mahdi.sesootservice.core.exception.DbConnectionException;
-import com.mahdi.sesootservice.core.exception.InvalidCategoryNameException;
+import com.mahdi.sesootservice.core.exception.category.InvalidCategoryNameException;
 import com.mahdi.sesootservice.core.messages.DbConnection;
 import com.mahdi.sesootservice.core.validators.category.ValidateCategory;
 import com.mahdi.sesootservice.entity.Category;

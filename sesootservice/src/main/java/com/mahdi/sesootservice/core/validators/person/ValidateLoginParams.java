@@ -1,8 +1,8 @@
 package com.mahdi.sesootservice.core.validators.person;
 
 
-import com.mahdi.sesootservice.core.exception.InvalidEmailException;
-import com.mahdi.sesootservice.core.exception.InvalidPasswordException;
+import com.mahdi.sesootservice.core.exception.user.InvalidEmailException;
+import com.mahdi.sesootservice.core.exception.user.InvalidPasswordException;
 
 public class ValidateLoginParams {
     public static void validateEmail(String email, String... message) throws InvalidEmailException {

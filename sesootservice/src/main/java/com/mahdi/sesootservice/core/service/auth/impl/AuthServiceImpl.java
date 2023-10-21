@@ -1,8 +1,8 @@
 package com.mahdi.sesootservice.core.service.auth.impl;
 
-import com.mahdi.sesootservice.core.exception.InvalidEmailException;
-import com.mahdi.sesootservice.core.exception.NoSuchUserException;
-import com.mahdi.sesootservice.core.exception.PermissionDeniedException;
+import com.mahdi.sesootservice.core.exception.user.InvalidEmailException;
+import com.mahdi.sesootservice.core.exception.user.NoSuchUserException;
+import com.mahdi.sesootservice.core.exception.user.PermissionDeniedException;
 import com.mahdi.sesootservice.core.messages.Login;
 import com.mahdi.sesootservice.core.messages.UserMessage;
 import com.mahdi.sesootservice.core.repository.auth.AuthRepo;

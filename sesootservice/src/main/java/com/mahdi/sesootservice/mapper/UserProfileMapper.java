@@ -10,10 +10,8 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface UserProfileMapper {
     UserProfileMapper INSTANCE = Mappers.getMapper(UserProfileMapper.class);
-
     @Mapping(source = "person.email", target = "email")
     @Mapping(source = "person.fullName", target = "fullName")
     @Mapping(source = "person.picture", target = "picture")
     UserProfileDto userToProfileDto(User user);
-
 }
