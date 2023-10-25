@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 
 @Entity
 @Table(name = "user_orders")
@@ -58,5 +57,10 @@ public class Orders extends BaseEntity<Long> {
         this.orderStatus = OrderStatus.WAITING_FOR_EXPERTS;
         this.user = user;
         this.subCategory = subCategory;
+    }
+
+    public Orders(){
+        this.beginningTime = Timestamp.valueOf(LocalDateTime.now());
+        this.orderStatus = OrderStatus.WAITING_FOR_EXPERTS;
     }
 }

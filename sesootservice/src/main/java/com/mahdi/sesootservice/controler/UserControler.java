@@ -77,6 +77,7 @@ public class UserControler {
     @PostMapping("/putorder")
     public void putOrder(@RequestBody OrderDto orderDto){
         SubCategory subCategory;
+        User user;
         try {
             subCategory = subCategoryService.findByName(orderDto.subCategoryName());
         } catch (SubCategoryException e) {
@@ -84,7 +85,7 @@ public class UserControler {
         }
         Person person = (Person) servletRequest.getSession().getAttribute("person");
         try {
-            User user = userService.profile(person);
+            user = userService.profile(person);
         } catch (NoSuchUserException e) {
             throw new RuntimeException(e);
         } catch (PermissionDeniedException e) {
@@ -92,6 +93,7 @@ public class UserControler {
         }
         Orders order = OrderDtoToOrder.INSTANCE.orderDtoToOrder(orderDto);
         order.setSubCategory(subCategory);
+        order.setUser(user);
         try {
             ordersService.putOrder(order);
         } catch (OrderException e) {
@@ -101,6 +103,5 @@ public class UserControler {
         }
 
     }
-
 
 }
