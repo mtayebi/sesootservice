@@ -6,5 +6,7 @@ import com.mahdi.sesootservice.entity.Orders;
 
 public interface OrdersService {
     void putOrder(Orders order) throws OrderException, SubCategoryException;
+    Orders findById(Long id) throws OrderException;
+
 
 }

@@ -6,6 +6,7 @@ import com.mahdi.sesootservice.entity.DTO.UserLoginDto;
 import com.mahdi.sesootservice.entity.base.Person;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,7 +20,7 @@ public class Login {
     }
 
     @PostMapping
-     UserLoginDto login(@RequestBody UserLoginDto userLoginDto){
+     UserLoginDto login(@Valid @RequestBody UserLoginDto userLoginDto){
         try {
 
             Person person = loginService.authenticatePerson(userLoginDto.email(), userLoginDto.password());

@@ -2,7 +2,7 @@ package com.mahdi.sesootservice.entity.Enum;
 
 public enum ExpertStatus {
     NEW,
-    WAITING_FO_QUALIFICATION,
+    WAITING_FOR_QUALIFICATION,
     CONFIRMED,
 
 }

@@ -1,6 +1,6 @@
 package com.mahdi.sesootservice.entity.DTO;
 
-public record OrderDto(
+public record UserOrderDto(
         String userOfferPrice,
         String description,
         String address,

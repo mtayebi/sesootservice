@@ -6,11 +6,11 @@ import com.mahdi.sesootservice.core.exception.user.InvalidEmailException;
 import com.mahdi.sesootservice.core.exception.user.InvalidPasswordException;
 import com.mahdi.sesootservice.core.exception.user.NoSuchUserException;
 import com.mahdi.sesootservice.core.exception.user.PermissionDeniedException;
-import com.mahdi.sesootservice.entity.DTO.OrderDto;
+import com.mahdi.sesootservice.entity.DTO.UserOrderDto;
 import com.mahdi.sesootservice.entity.Orders;
 import com.mahdi.sesootservice.entity.SubCategory;
-import com.mahdi.sesootservice.mapper.OrderDtoToOrder;
-import com.mahdi.sesootservice.entity.DTO.UerSignUpDto;
+import com.mahdi.sesootservice.mapper.UserOrderDtoToOrder;
+import com.mahdi.sesootservice.entity.DTO.SignUpDto;
 import com.mahdi.sesootservice.entity.DTO.UserProfileDto;
 import com.mahdi.sesootservice.entity.User;
 import com.mahdi.sesootservice.entity.base.Person;
@@ -35,7 +35,7 @@ public class UserControler {
         this.ordersService = ordersService;
     }
     @PostMapping("/signup")
-    public UserProfileDto userSignup(@RequestBody UerSignUpDto userSignUpDto){
+    public UserProfileDto userSignup(@RequestBody SignUpDto userSignUpDto){
         Person person = Person.builder()
                 .fullName(userSignUpDto.fullName())
                 .password(userSignUpDto.password())
@@ -75,7 +75,7 @@ public class UserControler {
     }
 
     @PostMapping("/putorder")
-    public void putOrder(@RequestBody OrderDto orderDto){
+    public void putOrder(@RequestBody UserOrderDto orderDto){
         SubCategory subCategory;
         User user;
         try {
@@ -91,7 +91,7 @@ public class UserControler {
         } catch (PermissionDeniedException e) {
             throw new RuntimeException(e);
         }
-        Orders order = OrderDtoToOrder.INSTANCE.orderDtoToOrder(orderDto);
+        Orders order = UserOrderDtoToOrder.INSTANCE.orderDtoToOrder(orderDto);
         order.setSubCategory(subCategory);
         order.setUser(user);
         try {

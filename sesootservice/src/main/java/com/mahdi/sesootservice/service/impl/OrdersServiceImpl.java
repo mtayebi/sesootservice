@@ -35,6 +35,9 @@ public class OrdersServiceImpl implements OrdersService {
         }
 
         ordersRepo.save(order);
-
+    }
+    @Override
+    public Orders findById(Long id) throws OrderException {
+        return ordersRepo.findById(id).orElseThrow(() -> new OrderException(com.mahdi.sesootservice.core.messages.Orders.orderNotFound));
     }
 }
