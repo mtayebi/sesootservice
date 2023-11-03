@@ -19,7 +19,15 @@ import com.mahdi.sesootservice.service.OrdersService;
 import com.mahdi.sesootservice.service.SubCategoryService;
 import com.mahdi.sesootservice.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
+import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 
 @RestController
 @RequestMapping("/user")
@@ -35,13 +43,23 @@ public class UserControler {
         this.ordersService = ordersService;
     }
     @PostMapping("/signup")
-    public UserProfileDto userSignup(@RequestBody SignUpDto userSignUpDto){
+    public UserProfileDto userSignup(@Valid SignUpDto userSignUpDto, @RequestPart MultipartFile picture){
         Person person = Person.builder()
                 .fullName(userSignUpDto.fullName())
                 .password(userSignUpDto.password())
                 .email(userSignUpDto.email())
-                .picture(userSignUpDto.picture())
                 .build();
+        try {
+            byte[] p = picture.getBytes();
+            person.setPicture(new SerialBlob(p));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (SerialException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         User user = User.builder()
                 .person(person)
                 .build();

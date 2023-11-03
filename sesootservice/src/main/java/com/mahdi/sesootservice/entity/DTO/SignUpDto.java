@@ -11,7 +11,7 @@ public record SignUpDto(
         @NotNull
         String password,
         @NotNull
-        String fullName,
-        Blob picture
+        String fullName
+//        Blob picture
         ) {
 }

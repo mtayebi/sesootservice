@@ -5,7 +5,7 @@ import com.mahdi.sesootservice.core.messages.Category;
 
 public class ValidateCategory {
     public static void validateCategoryName(String name) throws InvalidCategoryNameException {
-        if (! name.matches("^[a-zA-Z0-9_]*$"))
+        if (! name.matches("^[a-zA-Z0-9_ ]*$"))
             throw new InvalidCategoryNameException(Category.wrongName);
     }
 

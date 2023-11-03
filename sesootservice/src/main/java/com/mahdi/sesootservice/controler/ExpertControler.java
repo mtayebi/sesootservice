@@ -21,6 +21,12 @@ import com.mahdi.sesootservice.service.OrdersService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
+import java.io.IOException;
+import java.sql.SQLException;
 
 @RestController
 @RequestMapping("/expert")
@@ -38,13 +44,23 @@ public class ExpertControler {
     }
 
     @PostMapping("/signup")
-    public ExpertProfileDto signUp(@Valid @RequestBody SignUpDto ExpertSignupDto){
+    public ExpertProfileDto signUp(@Valid SignUpDto ExpertSignupDto, @RequestPart MultipartFile picture){
         Person person = Person.builder()
                 .fullName(ExpertSignupDto.fullName())
                 .password(ExpertSignupDto.password())
                 .email(ExpertSignupDto.email())
-                .picture(ExpertSignupDto.picture())
                 .build();
+
+        try {
+            byte[] p = picture.getBytes();
+            person.setPicture(new SerialBlob(p));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (SerialException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         Expert expert = Expert.builder()
                 .person(person)
                 .build();
