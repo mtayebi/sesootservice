@@ -11,6 +11,7 @@ import com.mahdi.sesootservice.core.exception.user.PermissionDeniedException;
 import com.mahdi.sesootservice.core.messages.Admin;
 import com.mahdi.sesootservice.core.service.auth.AuthService;
 import com.mahdi.sesootservice.entity.Category;
+import com.mahdi.sesootservice.entity.DTO.AdminUserSearchDto;
 import com.mahdi.sesootservice.entity.Expert;
 import com.mahdi.sesootservice.entity.SubCategory;
 import com.mahdi.sesootservice.entity.User;
@@ -80,6 +81,13 @@ public class AdminServiceImpl implements AdminService {
         if (! isAdmin(person))
             throw new NoSuchUserException(Admin.isNotAdmin);
         subCategoryService.add(subCategory);
+    }
+
+    public List<AdminUserSearchDto> searchUsers(AdminUserSearchDto adminUserSearchDto){
+        if (adminUserSearchDto.partOfEmail() != null){
+
+        }
+        return null;
     }
 
     @Override
