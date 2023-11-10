@@ -1,7 +1,7 @@
 package com.mahdi.sesootservice.core.validators.subcategory;
 
-import com.mahdi.sesootservice.core.exception.InvalidSubCategoryNameException;
-import com.mahdi.sesootservice.core.exception.InvalidSubCategoyPriceException;
+import com.mahdi.sesootservice.core.exception.category.InvalidSubCategoryNameException;
+import com.mahdi.sesootservice.core.exception.category.InvalidSubCategoyPriceException;
 import com.mahdi.sesootservice.core.messages.Category;
 
 public class ValidateSubcategory {

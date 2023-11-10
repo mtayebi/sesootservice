@@ -3,22 +3,20 @@ package com.mahdi.sesootservice.entity;
 import com.mahdi.sesootservice.entity.Enum.OrderStatus;
 import com.mahdi.sesootservice.entity.base.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 
 @Entity
 @Table(name = "user_orders")
 public class Orders extends BaseEntity<Long> {
-    private String user_offer_price;
-    private Date beginningTime;
+    private String userOfferPrice;
+    private Timestamp beginningTime;
     private String description;
     private String address;
 
@@ -47,4 +45,22 @@ public class Orders extends BaseEntity<Long> {
     )
     private List<ExpertOffer> expertOffer;
 
+    public Orders(String userOfferPrice,
+                  String description,
+                  String address,
+                  User user,
+                  SubCategory subCategory) {
+        this.userOfferPrice = userOfferPrice;
+        this.beginningTime = Timestamp.valueOf(LocalDateTime.now());
+        this.description = description;
+        this.address = address;
+        this.orderStatus = OrderStatus.WAITING_FOR_EXPERTS;
+        this.user = user;
+        this.subCategory = subCategory;
+    }
+
+    public Orders(){
+        this.beginningTime = Timestamp.valueOf(LocalDateTime.now());
+        this.orderStatus = OrderStatus.WAITING_FOR_EXPERTS;
+    }
 }

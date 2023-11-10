@@ -1,7 +1,7 @@
 package com.mahdi.sesootservice.core.service.auth;
 
-import com.mahdi.sesootservice.core.exception.NoSuchUserException;
-import com.mahdi.sesootservice.core.exception.PermissionDeniedException;
+import com.mahdi.sesootservice.core.exception.user.NoSuchUserException;
+import com.mahdi.sesootservice.core.exception.user.PermissionDeniedException;
 import com.mahdi.sesootservice.entity.base.Person;
 
 

@@ -7,12 +7,9 @@ import com.mahdi.sesootservice.core.exception.category.InvalidSubCategoyPriceExc
 import com.mahdi.sesootservice.core.exception.user.NoSuchUserException;
 import com.mahdi.sesootservice.core.exception.user.PermissionDeniedException;
 import com.mahdi.sesootservice.entity.Category;
-import com.mahdi.sesootservice.entity.DTO.AdminUserSearchDto;
 import com.mahdi.sesootservice.entity.DTO.CategoryRequestDto;
 import com.mahdi.sesootservice.entity.DTO.SubcategoryDto;
-import com.mahdi.sesootservice.entity.Expert;
 import com.mahdi.sesootservice.entity.SubCategory;
-import com.mahdi.sesootservice.entity.base.BaseEntity;
 import com.mahdi.sesootservice.entity.base.Person;
 import com.mahdi.sesootservice.mapper.CategoryDtoToCategory;
 import com.mahdi.sesootservice.mapper.SubcategoryDtoToSubcategory;
@@ -22,9 +19,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -88,12 +87,5 @@ public class AdminController {
 
 
         return ResponseEntity.ok("subcategory has created successfully");
-    }
-
-    @GetMapping("/filter-users")
-    public List<AdminUserSearchDto> listOfFilteredUsers(AdminUserSearchDto adminUserSearchDto){
-
-
-        return null;
     }
 }

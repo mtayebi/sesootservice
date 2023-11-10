@@ -7,10 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
-//@AllArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 
 @Entity
@@ -37,4 +38,10 @@ public class ExpertOffer extends BaseEntity<Long> {
             cascade = CascadeType.ALL
     )
     private Expert expert;
+
+    public void addOrder(Orders order){
+        if (ordersList == null)
+            ordersList = new ArrayList<>();
+        ordersList.add(order);
+    }
 }

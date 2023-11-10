@@ -1,22 +1,20 @@
 package com.mahdi.sesootservice.service.impl;
 
-import com.mahdi.sesootservice.core.exception.*;
+import com.mahdi.sesootservice.core.exception.user.*;
 import com.mahdi.sesootservice.core.messages.Login;
 import com.mahdi.sesootservice.core.messages.UserMessage;
 import com.mahdi.sesootservice.core.service.auth.AuthService;
-import com.mahdi.sesootservice.core.service.auth.impl.AuthServiceImpl;
 import com.mahdi.sesootservice.core.validators.person.ValidateLoginParams;
+import com.mahdi.sesootservice.entity.Orders;
 import com.mahdi.sesootservice.entity.User;
 import com.mahdi.sesootservice.entity.base.Person;
 import com.mahdi.sesootservice.repository.UserRepo;
 import com.mahdi.sesootservice.service.UserService;
-import jakarta.persistence.PersistenceException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalInt;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -68,5 +66,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> allUsers() {
         return userRepo.findAll();
+    }
+
+    @Override
+    public void putOrder(Orders order){
+
     }
 }
