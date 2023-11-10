@@ -20,7 +20,7 @@ public class Authentication {
     }
 
     @PostMapping("/login")
-     UserLoginDto login(@Valid @RequestBody UserLoginDto userLoginDto){
+     UserLoginDto login(@Valid UserLoginDto userLoginDto){
         try {
 
             Person person = loginService.authenticatePerson(userLoginDto.email(), userLoginDto.password());
