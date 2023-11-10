@@ -2,6 +2,7 @@ package com.mahdi.sesootservice.service.impl;
 
 import com.mahdi.sesootservice.core.exception.*;
 import com.mahdi.sesootservice.entity.Category;
+import com.mahdi.sesootservice.entity.DTO.AdminUserSearchDto;
 import com.mahdi.sesootservice.entity.Expert;
 import com.mahdi.sesootservice.entity.SubCategory;
 import com.mahdi.sesootservice.entity.User;
@@ -55,6 +56,13 @@ public class AdminServiceImpl implements AdminService {
     public void addSubCategory(SubCategory subCategory) throws
             DbConnectionException, InvalidSubCategoyPriceException, InvalidSubCategoryNameException {
         subCategoryService.add(subCategory);
+    }
+
+    public List<AdminUserSearchDto> searchUsers(AdminUserSearchDto adminUserSearchDto){
+        if (adminUserSearchDto.partOfEmail() != null){
+
+        }
+        return null;
     }
 
     @Override
