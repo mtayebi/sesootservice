@@ -7,9 +7,7 @@ import com.mahdi.sesootservice.core.exception.category.InvalidSubCategoyPriceExc
 import com.mahdi.sesootservice.core.exception.user.InvalidEmailException;
 import com.mahdi.sesootservice.core.exception.user.InvalidPasswordException;
 import com.mahdi.sesootservice.core.exception.user.NoSuchUserException;
-import com.mahdi.sesootservice.core.exception.user.PermissionDeniedException;
 import com.mahdi.sesootservice.core.messages.Admin;
-import com.mahdi.sesootservice.core.service.auth.AuthService;
 import com.mahdi.sesootservice.entity.Category;
 import com.mahdi.sesootservice.entity.DTO.AdminUserSearchDto;
 import com.mahdi.sesootservice.entity.Expert;
@@ -18,35 +16,21 @@ import com.mahdi.sesootservice.entity.User;
 import com.mahdi.sesootservice.entity.base.Person;
 import com.mahdi.sesootservice.repository.AdminRepo;
 import com.mahdi.sesootservice.service.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
-    AdminRepo adminRepo;
-    UserService userService;
-    ExpertService expertService;
-    CategoryService categoryService;
-    SubCategoryService subCategoryService;
-    AuthService authService;
-
-    @Autowired
-    public AdminServiceImpl(
-            AdminRepo adminRepo,
-            UserService userService,
-            ExpertService expertService,
-            CategoryService categoryService,
-            SubCategoryService subCategoryService,
-            AuthService authService) {
-        this.adminRepo = adminRepo;
-        this.userService = userService;
-        this.expertService = expertService;
-        this.categoryService = categoryService;
-        this.subCategoryService = subCategoryService;
-        this.authService = authService;
-    }
+    private final AdminRepo adminRepo;
+    private final UserService userService;
+    private final CategoryService categoryService;
+    private final SubCategoryService subCategoryService;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public void updateUser(User user) throws NoSuchUserException,
@@ -61,11 +45,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void addCategory(Category category, Person person) throws
-            PermissionDeniedException,
             NoSuchUserException,
             InvalidCategoryNameException,
             DbConnectionException {
-        authService.personIsAuthenticated(person);
         if (! isAdmin(person))
             throw new NoSuchUserException(Admin.isNotAdmin);
         categoryService.add(category);
@@ -75,9 +57,8 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void addSubCategory(SubCategory subCategory, Person person) throws
             DbConnectionException, InvalidSubCategoyPriceException,
-            InvalidSubCategoryNameException, PermissionDeniedException,
+            InvalidSubCategoryNameException,
             NoSuchUserException {
-        authService.personIsAuthenticated(person);
         if (! isAdmin(person))
             throw new NoSuchUserException(Admin.isNotAdmin);
         subCategoryService.add(subCategory);

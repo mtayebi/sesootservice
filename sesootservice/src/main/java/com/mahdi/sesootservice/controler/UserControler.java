@@ -20,13 +20,14 @@ import com.mahdi.sesootservice.service.SubCategoryService;
 import com.mahdi.sesootservice.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
-import java.sql.Blob;
 import java.sql.SQLException;
 
 @RestController
@@ -48,6 +49,7 @@ public class UserControler {
                 .fullName(userSignUpDto.fullName())
                 .password(userSignUpDto.password())
                 .email(userSignUpDto.email())
+                .enabled(true)
                 .build();
         try {
             byte[] p = picture.getBytes();
@@ -78,8 +80,9 @@ public class UserControler {
     }
 
     @GetMapping("/profile")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public UserProfileDto userProfile(){
-        Person person = (Person) servletRequest.getSession().getAttribute("person");
+        Person person = (Person)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user;
         try {
             user = userService.profile(person);
@@ -93,6 +96,7 @@ public class UserControler {
     }
 
     @PostMapping("/putorder")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public void putOrder(@RequestBody UserOrderDto orderDto){
         SubCategory subCategory;
         User user;
