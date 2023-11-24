@@ -8,10 +8,7 @@ import com.mahdi.sesootservice.core.exception.user.InvalidEmailException;
 import com.mahdi.sesootservice.core.exception.user.InvalidPasswordException;
 import com.mahdi.sesootservice.core.exception.user.NoSuchUserException;
 import com.mahdi.sesootservice.core.exception.user.PermissionDeniedException;
-import com.mahdi.sesootservice.entity.Category;
-import com.mahdi.sesootservice.entity.Expert;
-import com.mahdi.sesootservice.entity.SubCategory;
-import com.mahdi.sesootservice.entity.User;
+import com.mahdi.sesootservice.entity.*;
 import com.mahdi.sesootservice.entity.base.Person;
 
 import java.util.List;
@@ -29,5 +26,6 @@ public interface AdminService {
             NoSuchUserException;
     void updateExpert(Expert expert);
     List<Expert> allExperts();
+    void addAdmin(Admin admin);
 
 }

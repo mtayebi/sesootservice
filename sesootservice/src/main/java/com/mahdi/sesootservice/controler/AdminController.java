@@ -10,9 +10,7 @@ import com.mahdi.sesootservice.entity.Category;
 import com.mahdi.sesootservice.entity.DTO.AdminUserSearchDto;
 import com.mahdi.sesootservice.entity.DTO.CategoryRequestDto;
 import com.mahdi.sesootservice.entity.DTO.SubcategoryDto;
-import com.mahdi.sesootservice.entity.Expert;
 import com.mahdi.sesootservice.entity.SubCategory;
-import com.mahdi.sesootservice.entity.base.BaseEntity;
 import com.mahdi.sesootservice.entity.base.Person;
 import com.mahdi.sesootservice.mapper.CategoryDtoToCategory;
 import com.mahdi.sesootservice.mapper.SubcategoryDtoToSubcategory;
@@ -21,6 +19,7 @@ import com.mahdi.sesootservice.service.CategoryService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +41,7 @@ public class AdminController {
 
 
     @PostMapping("/add-category")
+    @PreAuthorize("haserole('ROLE_ADMIN')")
     public ResponseEntity<String> addCategory(@Valid @RequestBody CategoryRequestDto categoryRequestDto, Model model){
         Category category = CategoryDtoToCategory.INSTANCE.categoryDtoToCategory(categoryRequestDto);
         Person person = (Person) servletRequest.getSession().getAttribute("person");
@@ -61,6 +61,7 @@ public class AdminController {
     }
 
     @PostMapping("/add-subcategory")
+    @PreAuthorize("haserole('ROLE_ADMIN')")
     public ResponseEntity<String> addSubCategory(@Valid @RequestBody SubcategoryDto subcategoryDto){
 
         SubCategory subCategory = SubcategoryDtoToSubcategory.INSTANCE.convert(subcategoryDto);
@@ -91,6 +92,7 @@ public class AdminController {
     }
 
     @GetMapping("/filter-users")
+    @PreAuthorize("haserole('ROLE_ADMIN')")
     public List<AdminUserSearchDto> listOfFilteredUsers(AdminUserSearchDto adminUserSearchDto){
 
 

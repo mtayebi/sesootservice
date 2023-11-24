@@ -20,6 +20,9 @@ import com.mahdi.sesootservice.service.ExpertService;
 import com.mahdi.sesootservice.service.OrdersService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -49,6 +52,7 @@ public class ExpertControler {
                 .fullName(ExpertSignupDto.fullName())
                 .password(ExpertSignupDto.password())
                 .email(ExpertSignupDto.email())
+                .enabled(true)
                 .build();
 
         try {
@@ -79,8 +83,9 @@ public class ExpertControler {
     }
 
     @GetMapping("/profile")
+    @PreAuthorize("hasRole('EXPERT')")
     public ExpertProfileDto profile(){
-        Person person = (Person) servletRequest.getSession().getAttribute("person");
+        Person person = (Person) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Expert expert;
         try {
             expert = expertService.profile(person);
@@ -93,6 +98,7 @@ public class ExpertControler {
     }
 
     @PostMapping("/putorder")
+    @PreAuthorize("hasRole('ROLE_EXPERT')")
     public void putOrder(@Valid @RequestBody ExpertOrderDto expertOrderDto){
         ExpertOffer expertOffer =
                 ExpertOrderDtoToExpertOrder.Instance.orderDtoToOrder(expertOrderDto);

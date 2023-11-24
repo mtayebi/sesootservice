@@ -27,8 +27,10 @@ public class AppSecurity{
     @Bean
     public SecurityFilterChain appFilterChain(HttpSecurity http) throws Exception {
         http
-            .cors(AbstractHttpConfigurer::disable)
-            .csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)
+//                .authorizeHttpRequests(path -> path.requestMatchers("/user/putorder", "/user/profile").hasRole("user"))
+//                .authorizeHttpRequests(path -> path.anyRequest().permitAll())
             .httpBasic(Customizer.withDefaults());
         return http.build();
     }

@@ -16,9 +16,8 @@ import com.mahdi.sesootservice.entity.User;
 import com.mahdi.sesootservice.entity.base.Person;
 import com.mahdi.sesootservice.repository.AdminRepo;
 import com.mahdi.sesootservice.service.*;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,7 +29,6 @@ public class AdminServiceImpl implements AdminService {
     private final UserService userService;
     private final CategoryService categoryService;
     private final SubCategoryService subCategoryService;
-    private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public void updateUser(User user) throws NoSuchUserException,
@@ -79,6 +77,12 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Expert> allExperts() {
         return null;
+    }
+
+    @Override
+    @Transactional
+    public void addAdmin(com.mahdi.sesootservice.entity.Admin admin) {
+        adminRepo.save(admin);
     }
 
     private Boolean isAdmin(Person person){
