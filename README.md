@@ -9,8 +9,22 @@
 
 ### after running the programm you will have this API pathes for requesting(it will create a pre-defned admin user):
 
-- user:	/login (post)[just for dev-basic branch]	| /user/signup (post)	| /user/profile (get)	| /user/putorder (post)	| /logout (get) [just for dev-basic branch]	
+| user
+| ---
+| /login (post)[just for dev-basic branch]
+| /user/signup (post)
+|/user/profile (get)	| /user/putorder (post)	| /logout (get) [just for dev-basic branch]	
 
-- expert:	/login (post) [just for dev-basic branch]	| /expert/signup (post)	| /expert/profile (get)	| /expert/putorder (post) |	/logout (get) [just for dev-basic branch]
+| expert
+| ---
+| /login (post) [just for dev-basic branch]	
+| /expert/signup (post)	| /expert/profile (get)	
+| /expert/putorder (post) 
+|	/logout (get) [just for dev-basic branch]
 
-- admin: /login (post) [just for dev-basic branch] |	/admin/add-category (post) |	/admin/add-subcategory (post)	|	/logout (get) [just for dev-basic branch]
+| admin
+| ---
+| /login (post) [just for dev-basic branch] 
+|	/admin/add-category (post) 
+|	/admin/add-subcategory (post)	
+|	/logout (get) [just for dev-basic branch]
